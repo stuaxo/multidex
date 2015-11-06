@@ -1,7 +1,7 @@
-# multidex
+# Multidex
 Simple Multi Index Dictionaries for python.
 
-Dictionary that keeps indexes data by other keys.
+Dictionary with secondary indexes.
 
 Ideal for many "small data" situations where data fits into memory, and you want a fast lookup for various fields.
 
