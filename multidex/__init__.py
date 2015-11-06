@@ -2,6 +2,9 @@ import operator
 
 
 class MultiIndexBase(dict):
+    """
+    Add find method, also update indexes on adding or deleting item
+    """
     def __delitem__(self, key):
         item = self[key]
         super(MultiIndexIndexBase, self).__delitem__(key)
@@ -37,7 +40,7 @@ class MultiIndex(type):
                     key = getter(item)
                     items = index.get(key)
                     if items is None:
-                        #items = weakref.WeakSet([item])
+
                         items = {item}
                         index[key] = items
                     else:
