@@ -30,5 +30,5 @@ for score in highscores:
 
 for species in ["cat", "human"]:
     print("Top %s scores" % species)
-    for highscore in sorted(score_idx.find("species", species), key=attrgetter("score")):
+    for highscore in sorted(score_idx.find("species", species), key=attrgetter("score"), reverse=True)):
         print("*** %s *** %s" % (highscore.name, highscore.score))
