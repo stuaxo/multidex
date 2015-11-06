@@ -5,7 +5,7 @@ from shutil import rmtree
 from setuptools import setup, find_packages
 from setuptools import Command
 
-VERSION="0.1.0"
+VERSION="0.1.1"
 long_description="""
 
 """

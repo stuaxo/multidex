@@ -5,6 +5,12 @@ class MultiIndexBase(dict):
     """
     Add find method, also update indexes on adding or deleting item
     """
+
+    def __init__(self, **kwargs):
+        dict.__init__(self)
+        for key, value in kwargs.items():
+            self[key] = value
+    
     def __delitem__(self, key):
         item = self[key]
         super(MultiIndexIndexBase, self).__delitem__(key)
