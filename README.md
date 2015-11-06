@@ -11,22 +11,28 @@ Specify extra indexes and their getters then use as a normal dict, to do lookups
 Toy example
 
 ```python
-class HighScores(MultiIndex):
+from collections import namedtuple
+from operator import attrgetter
+from multidex import MultiIndex
+
+HighScore = namedtuple("HighScore", "name score species")
+highscores = [
+    HighScore("terry", 200, "cat"),
+    HighScore("jill", 1900, "human"),
+    HighScore("zoooby", 100, "cat"),
+    HighScore("chilax", 100, "human"),
+]
+
+
+class HighScores(object):
     __metaclass__ = MultiIndex
     alt_indexes = dict(
-        species=operator.attrgetter("species"),
-        score=operator.attrgetter("score")
+        species=attrgetter("species"),
+        score=attrgetter("score")
     )
-        
-score_idx = HighScores(score.name: score for score in scores)
-print score_idx.find("score")
-(HighScore(name='zoooby', score=100, species='cat'),
- HighScore(name='chilax', score=100, species='cat'))
- 
-print score_idx.find("score", 1900)
-(HighScore(name='jill', score=1900, species='human'),)
 
-del d['zoooby']
-d.find("species", "cat")
-(HighScore(name='chilax', score=100, species='cat'),)
+
+score_idx = HighScores(**{score.name: score for score in highscores})
+print score_idx.find("score", 100)
+(HighScore(name='chilax', score=100, species='human'), HighScore(name='zoooby', score=100, species='cat'))
 ```
