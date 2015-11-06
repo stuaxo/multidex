@@ -5,10 +5,11 @@ from multidex import MultiIndex
 from operator import attrgetter
 from collections import namedtuple
 
+from six import with_metaclass
+
 HighScore = namedtuple("HighScore", "name score species")
 
-class HighScores(object):
-    __metaclass__ = MultiIndex
+class HighScores(with_metaclass(MultiIndex)):
 
     # specify index name and getter
     alt_indexes = dict(
